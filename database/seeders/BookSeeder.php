@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\BookCategory;
+use App\Models\Book;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class BookCategorySeeder extends Seeder
+class BookSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        BookCategory::factory()->count(3_000)->create();
+        Book::factory()->count(100_000)->create();
     }
 }
