@@ -1,7 +1,5 @@
 ## Installation
 
----
-
  - copy .env.example .env
  - composer install
  - php artisan key:generate
@@ -10,5 +8,3 @@
  - npm install
  - npm run build
  - composer run dev
-
-.
