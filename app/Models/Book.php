@@ -23,4 +23,8 @@ class Book extends Model
     public function ratings(): HasMany {
         return $this->hasMany(Rating::class);
     }
+
+    public function getAverageRatingAttribute() {
+        return $this->ratings()->avg('rating');
+    }
 }
