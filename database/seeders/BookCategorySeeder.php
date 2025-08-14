@@ -2,17 +2,34 @@
 
 namespace Database\Seeders;
 
-use App\Models\BookCategory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Faker\Factory;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class BookCategorySeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        BookCategory::factory()->count(3_000)->create();
+        $faker = Factory::create();
+        $categories = [];
+
+        for ($i = 0; $i < 3000; $i++) {
+            $categories[] = [
+                'name' => $faker->word() . ' ' . Str::random(8),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ];
+
+            if (count($categories) === 500) {
+                DB::table('book_categories')->insert($categories);
+                $categories = [];
+            }
+        }
+
+        if ($categories) {
+            DB::table('book_categories')->insert($categories);
+        }
     }
 }
+
